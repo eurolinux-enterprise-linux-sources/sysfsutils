@@ -3,7 +3,7 @@ URL:            http://sourceforge.net/projects/linux-diag/
 License:        GPLv2
 Group:          Development/Tools
 Version:        2.1.0
-Release:        6.1%{?dist}
+Release:        7%{?dist}
 
 Summary:        Utilities for interfacing with sysfs
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -11,6 +11,7 @@ Source0:        http://prdownloads.sourceforge.net/linux-diag/%{name}-%{version}
 Patch0:         sysfsutils-2.0.0-redhatify.patch
 Patch1:         sysfsutils-2.0.0-class-dup.patch
 Patch2:         sysfsutils-2.1.0-get_link.patch
+Patch3:         sysfsutils-2.1.0-fix_memleak.patch
 
 %description
 This package's purpose is to provide a set of utilities for interfacing
@@ -39,6 +40,7 @@ to build programs using the libsysfs API.
 %patch0 -p1 -b .redhatify
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %configure
@@ -81,6 +83,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Sep 20 2012 Anton Arapov <aarapov@redhat.com> - 2.1.0-7
+- Fix up memory leak (#671554)
+
 * Mon Nov 30 2009 Dennis Gregorovic <dgregor@redhat.com> - 2.1.0-6.1
 - Rebuilt for RHEL 6
 

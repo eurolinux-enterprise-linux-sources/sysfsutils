@@ -1,0 +1,27 @@
+diff -urpN sysfsutils-2.1.0.orig/lib/sysfs_device.c sysfsutils-2.1.0/lib/sysfs_device.c
+--- sysfsutils-2.1.0.orig/lib/sysfs_device.c	2011-03-29 03:33:10.774255902 -0400
++++ sysfsutils-2.1.0/lib/sysfs_device.c	2011-03-29 03:37:02.726252416 -0400
+@@ -120,13 +120,9 @@ void sysfs_close_device_tree(struct sysf
+ {
+ 	if (devroot) {
+ 		if (devroot->children) {
+-			struct sysfs_device *child = NULL;
+-
+-			dlist_for_each_data(devroot->children, child,
+-					struct sysfs_device)
+-				sysfs_close_device_tree(child);
++			dlist_destroy(devroot->children);
++			devroot->children = NULL;
+ 		}
+-		devroot->children = NULL;
+ 		sysfs_close_device(devroot);
+ 	}
+ }
+@@ -254,6 +250,7 @@ struct sysfs_device *sysfs_open_device_t
+ 			dlist_unshift_sorted(rootdev->children, new, sort_list);
+ 		}
+ 	}
++	sysfs_close_device(devlist);
+ 
+ 	return rootdev;
+ }
