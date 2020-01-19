@@ -3,7 +3,7 @@ URL:            http://sourceforge.net/projects/linux-diag/
 License:        GPLv2
 Group:          Development/Tools
 Version:        2.1.0
-Release:        14%{?dist}
+Release:        16%{?dist}
 
 Summary:        Utilities for interfacing with sysfs
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -84,6 +84,12 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 2.1.0-16
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 2.1.0-15
+- Mass rebuild 2013-12-27
+
 * Sat May 11 2013 Anton Arapov <anton@redhat.com> - 2.1.0-14
 - We don't support aarch64, do the appropriate changes (#926600)
 
